@@ -5,7 +5,7 @@ text_success() { printf "\e[00;92m%s\e[00m\n" "$1"; }
 text_danger() { printf "\e[00;91m%s\e[00m\n" "$1"; exit 0; }
 
 USER_AGENT="Mozilla/5.0+(compatible; IP2Proxy/PostgereSQL-Docker; https://hub.docker.com/r/ip2proxy/postgresql)"
-CODES=("PX1-LITE PX2-LITE PX3-LITE PX4-LITE PX5-LITE PX6-LITE PX7-LITE PX8-LITE PX9-LITE PX10-LITE PX11-LITE PX1 PX2 PX3 PX4 PX5 PX6 PX7 PX8 PX9 PX10 PX11")
+CODES=("PX1-LITE PX2-LITE PX3-LITE PX4-LITE PX5-LITE PX6-LITE PX7-LITE PX8-LITE PX9-LITE PX10-LITE PX11-LITE PX1 PX2 PX3 PX4 PX5 PX6 PX7 PX8 PX9 PX10 PX11 PX12")
 
 if [ -f /ip2proxy.conf ]; then
 	service postgresql start >/dev/null 2>&1
@@ -95,47 +95,51 @@ text_primary " > [PostgreSQL] Create table \"ip2proxy_database_tmp\" "
 
 case "$CODE" in
 	PX1|PX1LITE )
-		FIELDS=',country_code char(2) NOT NULL,country_name varchar(64) NOT NULL'
+		FIELDS=', country_code char(2) NOT NULL, country_name varchar(64) NOT NULL'
 	;;
 
 	PX2|PX2LITE )
-		FIELDS=',proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL,country_name varchar(64) NOT NULL'
+		FIELDS=', proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL, country_name varchar(64) NOT NULL'
 	;;
 
 	PX3|PX3LITE )
-		FIELDS=',proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL,country_name varchar(64) NOT NULL,region_name varchar(128) NOT NULL,city_name varchar(128) NOT NULL'
+		FIELDS=', proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL, country_name varchar(64) NOT NULL, region_name varchar(128) NOT NULL, city_name varchar(128) NOT NULL'
 	;;
 
 	PX4|PX4LITE )
-		FIELDS=',proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL,country_name varchar(64) NOT NULL,region_name varchar(128) NOT NULL,city_name varchar(128) NOT NULL,isp varchar(255) NOT NULL'
+		FIELDS=', proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL, country_name varchar(64) NOT NULL, region_name varchar(128) NOT NULL, city_name varchar(128) NOT NULL, isp varchar(255) NOT NULL'
 	;;
 
 	PX5|PX5LITE )
-		FIELDS=',proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL,country_name varchar(64) NOT NULL,region_name varchar(128) NOT NULL,city_name varchar(128) NOT NULL,isp varchar(255) NOT NULL,domain varchar(128) NOT NULL'
+		FIELDS=', proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL, country_name varchar(64) NOT NULL, region_name varchar(128) NOT NULL, city_name varchar(128) NOT NULL, isp varchar(255) NOT NULL, domain varchar(128) NOT NULL'
 	;;
 
 	PX6|PX6LITE )
-		FIELDS=',proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL,country_name varchar(64) NOT NULL,region_name varchar(128) NOT NULL,city_name varchar(128) NOT NULL,isp varchar(255) NOT NULL,domain varchar(128) NOT NULL,usage_type varchar(11) NOT NULL'
+		FIELDS=', proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL, country_name varchar(64) NOT NULL, region_name varchar(128) NOT NULL, city_name varchar(128) NOT NULL, isp varchar(255) NOT NULL, domain varchar(128) NOT NULL, usage_type varchar(11) NOT NULL'
 	;;
 
 	PX7|PX7LITE )
-		FIELDS=',proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL,country_name varchar(64) NOT NULL,region_name varchar(128) NOT NULL,city_name varchar(128) NOT NULL,isp varchar(255) NOT NULL,domain varchar(128) NOT NULL,usage_type varchar(11) NOT NULL,asn varchar(6) NOT NULL,"as" varchar(256) NOT NULL'
+		FIELDS=', proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL, country_name varchar(64) NOT NULL, region_name varchar(128) NOT NULL, city_name varchar(128) NOT NULL, isp varchar(255) NOT NULL, domain varchar(128) NOT NULL, usage_type varchar(11) NOT NULL, asn varchar(6) NOT NULL, "as" varchar(256) NOT NULL'
 	;;
 
 	PX8|PX8LITE )
-		FIELDS=',proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL,country_name varchar(64) NOT NULL,region_name varchar(128) NOT NULL,city_name varchar(128) NOT NULL,isp varchar(255) NOT NULL,domain varchar(128) NOT NULL,usage_type varchar(11) NOT NULL,asn varchar(6) NOT NULL,"as" varchar(256) NOT NULL,last_seen integer NOT NULL'
+		FIELDS=', proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL, country_name varchar(64) NOT NULL, region_name varchar(128) NOT NULL, city_name varchar(128) NOT NULL, isp varchar(255) NOT NULL, domain varchar(128) NOT NULL, usage_type varchar(11) NOT NULL, asn varchar(6) NOT NULL, "as" varchar(256) NOT NULL, last_seen integer NOT NULL'
 	;;
 
 	PX9|PX9LITE )
-		FIELDS=',proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL,country_name varchar(64) NOT NULL,region_name varchar(128) NOT NULL,city_name varchar(128) NOT NULL,isp varchar(255) NOT NULL,domain varchar(128) NOT NULL,usage_type varchar(11) NOT NULL,asn varchar(6) NOT NULL,"as" varchar(256) NOT NULL,last_seen integer NOT NULL, threat varchar(128)'
+		FIELDS=', proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL, country_name varchar(64) NOT NULL, region_name varchar(128) NOT NULL, city_name varchar(128) NOT NULL, isp varchar(255) NOT NULL, domain varchar(128) NOT NULL, usage_type varchar(11) NOT NULL, asn varchar(6) NOT NULL, "as" varchar(256) NOT NULL, last_seen integer NOT NULL, threat varchar(128)'
 	;;
 
 	PX10|PX10LITE )
-		FIELDS=',proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL,country_name varchar(64) NOT NULL,region_name varchar(128) NOT NULL,city_name varchar(128) NOT NULL,isp varchar(255) NOT NULL,domain varchar(128) NOT NULL,usage_type varchar(11) NOT NULL,asn varchar(6) NOT NULL,"as" varchar(256) NOT NULL,last_seen integer NOT NULL, threat varchar(128)'
+		FIELDS=', proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL, country_name varchar(64) NOT NULL, region_name varchar(128) NOT NULL, city_name varchar(128) NOT NULL, isp varchar(255) NOT NULL, domain varchar(128) NOT NULL, usage_type varchar(11) NOT NULL, asn varchar(6) NOT NULL, "as" varchar(256) NOT NULL, last_seen integer NOT NULL, threat varchar(128)'
 	;;
 
 	PX11|PX11LITE )
-		FIELDS=',proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL,country_name varchar(64) NOT NULL,region_name varchar(128) NOT NULL,city_name varchar(128) NOT NULL,isp varchar(255) NOT NULL,domain varchar(128) NOT NULL,usage_type varchar(11) NOT NULL,asn varchar(6) NOT NULL,"as" varchar(256) NOT NULL,last_seen integer NOT NULL, threat varchar(128),provider varchar(256) NOT NULL'
+		FIELDS=', proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL, country_name varchar(64) NOT NULL, region_name varchar(128) NOT NULL, city_name varchar(128) NOT NULL, isp varchar(255) NOT NULL, domain varchar(128) NOT NULL, usage_type varchar(11) NOT NULL, asn varchar(6) NOT NULL, "as" varchar(256) NOT NULL, last_seen integer NOT NULL, threat varchar(128), provider varchar(256) NOT NULL'
+	;;
+	
+	PX12|PX12LITE )
+		FIELDS=', proxy_type varchar(3) NOT NULL, country_code char(2) NOT NULL, country_name varchar(64) NOT NULL, region_name varchar(128) NOT NULL, city_name varchar(128) NOT NULL, isp varchar(255) NOT NULL, domain varchar(128) NOT NULL, usage_type varchar(11) NOT NULL, asn varchar(6) NOT NULL, "as" varchar(256) NOT NULL, last_seen integer NOT NULL, threat varchar(128), provider varchar(256) NOT NULL, fraud_score integer NOT NULL'
 	;;
 esac
 
